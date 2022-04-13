@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      width: 100%;
+      height: 100vh;
+      perspective: 100px;
+      transform-style: preserve-3d;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow: hidden;
+    }
+
+    header {
+      height: 80px;
+    }
+
+    footer {
+      height: 1000px;
+    }
+
+    .list-item {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+      border: 1px solid red;
+    }
+
+    .newList-banner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      transition: all 1s ease;
+    }
+
+    .newList-custom-title {
+      position: absolute;
+      left: 120px;
+      top: 128px;
+      font-family: PingFangSC-Regular;
+      font-size: 40px;
+      color: #FFFFFF;
+      letter-spacing: 3.64px;
+      line-height: 44px;
+    }
+
+    .item-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transform: translateZ(-50px) scale(2.4);
+    }
+
+    .item-image img {
+      position: relative;
+      top: -80px;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      /* object-fit: cover; */
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <section class="list-item">
+    <div class="newList-banner">
+      <p class="newList-custom-title">行业观点</p>
+    </div>
+    <div class="item-image">
+      <img src="./rick.jpeg" alt="">
+    </div>
+  </section>
+  <footer>footer</footer>
+</body>
+
+</html>

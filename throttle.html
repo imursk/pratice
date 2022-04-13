@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>throttle</title>
+</head>
+<style>
+  .square {
+    width: 200px;
+    height: 200px;
+    background-color: palevioletred;
+  }
+</style>
+
+<body>
+  <div class="square" draggable="true"></div>
+  <script>
+    function throttle(fn, delay) {
+      let timer = null
+      return function () {
+        if (timer) {
+          return
+        }
+        timer = setTimeout(function () {
+          fn()
+          timer = null
+        }, delay)
+      }
+    }
+
+    const box = document.querySelector('.square')
+    box.addEventListener('drag', throttle(function (e) {
+      console.log(666);
+    }, 100))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      padding-top: 200px;
+    }
+    #demo{
+      width: 1200px;
+      height: 300px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid;
+    }
+    #demo>ul{
+      list-style: none;
+    }
+    #demo>ul::after{
+      clear: both;
+      content: '';
+      display: block;
+    }
+    #demo>ul>li{
+      border: 1px solid;
+      margin: 20px 0;
+      width: 100%;
+      display: inline;
+      line-height: 40px;
+      float:left;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo">
+    <ul id="wrap1">
+      <li>
+        <span>校团委0</span>
+        <span>2021-03-06</span>
+        <span>🔥 热招中</span>
+        <a href="javascript:;">立即报名</a>
+      </li>
+      <li>
+        <span>校团委1</span>
+        <span>2021-03-06</span>
+        <span>🔥 热招中</span>
+        <a href="javascript:;">立即报名</a>
+      </li>
+      <li>
+        <span>校团委2</span>
+        <span>2021-03-06</span>
+        <span>🔥 热招中</span>
+        <a href="javascript:;">立即报名</a>
+      </li>
+      <li>
+        <span>校团委3</span>
+        <span>2021-03-06</span>
+        <span>🔥 热招中</span>
+        <a href="javascript:;">立即报名</a>
+      </li>
+      <li>
+        <span>校团委4</span>
+        <span>2021-03-06</span>
+        <span>🔥 热招中</span>
+        <a href="javascript:;">立即报名</a>
+      </li>
+    </ul>
+    <ul id="wrap2"></ul>
+  </div>
+</body>
+
+<script>
+  window.onload = roll(50);
+
+  function roll(t) {
+      let ul1 = document.getElementById("wrap1");
+      let ul2 = document.getElementById("wrap2");
+      let ulbox = document.getElementById("demo");
+      ul2.innerHTML = ul1.innerHTML;
+      ulbox.scrollTop = 0; // 开始无滚动时设为0
+      let timer = setInterval(rollStart, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+      // 鼠标移入div时暂停滚动
+      ulbox.onmouseover = function () {
+          clearInterval(timer);
+      }
+      // 鼠标移出div后继续滚动
+      ulbox.onmouseout = function () {
+          timer = setInterval(rollStart, t);
+      }
+  }
+
+  // 开始滚动函数
+  function rollStart() {
+      // 上面声明的DOM对象为局部对象需要再次声明
+      let ul1 = document.getElementById("wrap1");
+      let ul2 = document.getElementById("wrap2");
+      let ulbox = document.getElementById("demo");
+      // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+      if (ulbox.scrollTop >= ul1.scrollHeight) {
+          ulbox.scrollTop = 0;
+      } else {
+          ulbox.scrollTop++;
+      }
+      // console.log(ulbox.scrollTop);
+      // console.log(ul1.scrollHeight);
+  }
+</script>
+
+</html>

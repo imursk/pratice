@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    header {
+      width: 100%;
+      height: 1500px;
+      background: pink;
+    }
+
+    .a {
+      visibility: hidden;
+      z-index: -100;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
+      height: 280px;
+      width: 100%;
+    }
+
+    .b {
+      position: absolute;
+      height: 853px;
+      width: 100%;
+      max-width: none;
+    }
+
+    span {
+      display: block;
+      height: 280px;
+      width: 100%;
+    }
+
+    footer {
+      height: 300px;
+      background-color: dodgerblue;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    哈哈哈哈哈哈哈哈哈哈
+  </header>
+  <section>
+    <span id="d">
+      哈哈哈哈哈哈哈哈哈哈
+      <div class="a">
+        <img class="b" src="./编组 3备份.png">
+      </div>
+    </span>
+  </section>
+  <footer>
+    哈哈哈哈哈哈哈哈哈哈
+  </footer>
+</body>
+<script>
+  window.onload = function () {
+    let A = document.querySelector('.a') //   图片外div a
+    let B = document.querySelector('.b') //图片 b
+    let client = document.documentElement.clientHeight //页面可视高度
+    let dTop = document.getElementById('d').getBoundingClientRect().top //span元素到视窗上的距离
+
+    // 元素出现在视口中了
+    if (dTop < client) {
+      // 图片设置为可见，修改transform值
+      A.style.visibility = 'visible'
+      A.style.transform = `translate3d(0px, ${client-(client - dTop)}px, 0px)`
+      B.style.transform = `translate3d(0px,${(-(client * 0.82))+((client - dTop)*0.8)}px, 0px)`
+    } else {
+      A.style.transform = `translate3d(0px, ${client-10}px, 0px)`
+      B.style.transform = `translate3d(0px,-${(client-10) * 0.82}px, 0px)`
+    }
+
+    // 滚动条事件
+    window.onscroll = function () {
+      let client = document.documentElement.clientHeight
+      let dTop = document.getElementById('d').getBoundingClientRect().top
+      // 元素出现在视口中了
+      if (dTop < client) {
+        // 同上，图片设置为可见，修改transform值
+        A.style.visibility = 'visible'
+        A.style.transform = `translate3d(0px, ${client-(client - dTop)}px, 0px)`
+        B.style.transform = `translate3d(0px,${(-(client * 0.82))+((client - dTop)*0.8)}px, 0px)`
+      }
+    }
+  }
+</script>
+
+</html>

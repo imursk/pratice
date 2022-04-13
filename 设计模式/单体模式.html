@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 创建一个简单对象
+    var obj = {
+      myprop: 'my value'
+    };
+
+    // 创建一个具有完全相同成员的同类对象
+    var obj2 = {
+      myprop: 'my value'
+    };
+
+    obj === obj2 //false
+    obj == obj2 //false
+
+
+
+    function Universe() {
+      // 我们有一个现有实例吗？
+      if (typeof Universe.instance === 'object') {
+        return Universe.instance
+      }
+      // 随便弄点值
+      this.start_time = 0;
+      this.bang = 'Big';
+      // 缓存
+      Universe.instance = this;
+      // 隐式返回
+      return this;
+    }
+    // 单体例子
+    var uni = new Universe()
+    var uni2 = new Universe()
+    uni === uni2 //true
+    console.log(uni === uni2);
+    console.log(uni);
+  </script>
+</body>
+
+</html>
