@@ -4,7 +4,7 @@
  * @param {Map} map 用于存储循环引用对象的地址
  */
 
-function deepClone (obj = {}, map = new Map()) {
+function deepClone (obj = {}, map = new WeakMap()) {
   if (typeof obj !== "object") {
     return obj
   }
