@@ -13,6 +13,6 @@ let Parent = function (name, age) {
   that.age = age
   return that
 }
-// const child = myNew(Parent,'嫩爹', '25')
-const child = new Parent('嫩爹', '25')
+const child = myNew(Parent, '嫩爹', '25')
+// const child = new Parent('嫩爹', '25')
 console.log(child)
