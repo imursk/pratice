@@ -12,6 +12,6 @@ types.forEach(type => {
 })
 
 let a = ''
-console.log(fns.isArray(a));
+console.log(fns.isString(a));
 
 
