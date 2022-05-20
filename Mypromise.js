@@ -100,6 +100,8 @@ class Mypromise {
     })
   }
 }
+
+
 function resolvePromise (promise2, x, resolve, reject) {
   if (promise2 === x) {
     return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
@@ -147,3 +149,45 @@ function resolvePromise (promise2, x, resolve, reject) {
   // }
 }
 module.exports = Mypromise
+
+
+
+// Promise.all
+Promise.prototype.myAll = function (context) {
+  let results = []
+  let promiseCount = 0
+  let contextLen = context.length
+  return new Promise(function (resolve, reject) {
+    for (let val of context) {
+      Promise.resolve(val).then(function (res) {
+        promiseCount++
+        // results.push(res);
+        results[i] = res
+        // 当所有函数都正确执行了，resolve输出所有返回结果。
+        if (promiseCount === contextLen) {
+          return resolve(results)
+        }
+      }, function (err) {
+        return reject(err)
+      })
+    }
+  })
+}
+
+
+// Promise.race
+Promise.prototype.myRace = function (context) {
+  let Constructor = this
+  if (!isArray(context)) {
+    return new Constructor(function (_, reject) {
+      return reject(new TypeError('You must pass an array to race.'))
+    })
+  } else {
+    return new Constructor(function (resolve, reject) {
+      let len = context.length
+      for (let i = 0; i < len; i++) {
+        Constructor.resolve(context[i]).then(resolve, reject)
+      }
+    })
+  }
+}
