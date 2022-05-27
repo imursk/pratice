@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="sw1">sw1</button>
+    <button id="sw2">sw2</button>
+    <button id="sw3">sw3</button>
+    <div id="inner"></div>
+</body>
+<script>
+    let testApi = (val) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(val)
+            }, 1000)
+        })
+    }
+    let sw1 = document.querySelector('#sw1');
+    let sw2 = document.querySelector('#sw2');
+    let sw3 = document.querySelector('#sw3');
+    let inner = document.querySelector('#inner');
+
+    let queue = [],
+        running = false
+
+    // 队列内添加任务
+    function addQueue(item) {
+        queue.push(item)
+        if (queue.length > 0 && !running) {
+            running = true
+            process()
+        }
+    }
+
+    // 执行队列中任务
+    function process() {
+        const item = queue.shift()
+        if (item) {
+            item().then(res => {
+                console.log('处理事件', res);
+                process()
+            })
+        } else {
+            running = false
+        }
+    }
+
+    sw1.onclick = function () {
+        addQueue(() => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    inner.innerHTML = 'sw1'
+                    resolve('sw1执行完毕')
+                }, 1000)
+            })
+        })
+    }
+    sw2.onclick = function () {
+        addQueue(() => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    inner.innerHTML = 'sw2'
+                    resolve('sw2执行完毕')
+                }, 3000)
+            })
+        })
+    }
+    sw3.onclick = function () {
+        addQueue(() => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    inner.innerHTML = 'sw3'
+                    resolve('sw3执行完毕')
+                }, 2000)
+            })
+        })
+    }
+</script>
+
+</html>
