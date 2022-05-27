@@ -55,3 +55,25 @@ console.log(myFlat(arr4))
 console.log(myScore(arr5))
 
 
+
+
+// 数组对象去重
+let arr = [
+  { id: 0, name: "张三" },
+  { id: 1, name: "李四" },
+  { id: 1, name: "李四" },
+  { id: 0, name: "张三" },
+  { id: 1, name: "李四" },
+  { id: 1, name: "李四" },
+  { id: 0, name: "张三" },
+  { id: 1, name: "李四" },
+]
+
+function removeSame (arr) {
+  let obj = {}
+  let result = arr.reduce((pre, cur) => {
+    obj[cur.name] ? '' : (obj[cur.name] = cur.name && pre.push(cur))
+    return pre
+  }, [])
+  return result
+}

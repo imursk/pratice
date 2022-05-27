@@ -52,19 +52,19 @@
 // console.log(mySet(arr));
 
 
-function mySort (params) {
-  let len = params.length,
-    i, j, tmp, result
-  result = params.slice(0)
-  for (i = 0; i < len; i++) {
-    for (j = len - 1; j > i; j--) {
-      if (result[j] < result[j - 1]) {
-        tmp = result[j - 1]
-        result[j - 1] = result[j]
-        result[j] = tmp
-      }
-    }
-  }
-  return result
-}
-console.log(mySort([5, 6, 4, 7, 8]))
+// function mySort (params) {
+//   let len = params.length,
+//     i, j, tmp, result
+//   result = params.slice(0)
+//   for (i = 0; i < len; i++) {
+//     for (j = len - 1; j > i; j--) {
+//       if (result[j] < result[j - 1]) {
+//         tmp = result[j - 1]
+//         result[j - 1] = result[j]
+//         result[j] = tmp
+//       }
+//     }
+//   }
+//   return result
+// }
+// console.log(mySort([5, 6, 4, 7, 8]))
