@@ -68,3 +68,41 @@
 //   return result
 // }
 // console.log(mySort([5, 6, 4, 7, 8]))
+
+
+
+// const promise = Promise.resolve('fe')
+//   .then((res) => {
+//     console.log(res)
+//     return promise2
+//   })
+//   .then((res) => {
+//     console.log(res + 2)
+//   })
+// const promise2 = new Promise((resolve, reject) => {
+//   console.log('in')
+//   resolve(5)
+//   return 996
+// })
+// setTimeout(() => {
+//   promise3.then(
+//     (res) => {
+//       console.log('res: ', res)
+//     },
+//     (err) => {
+//       console.log('err: ', err)
+//     }
+//   )
+// }, 0)
+// const promise3 = promise2
+//   .then((res) => {
+//     console.log(res)
+//     throw 2
+//   }, err => {
+//     console.log(err)
+//   })
+// // .catch((err) => {
+// //   console.log(err)
+// // })
+// console.log('ke')
+

@@ -2,30 +2,30 @@
 
 
 //被观察者
-class Subject{
-  constructor(name){
+class Subject {
+  constructor(name) {
     this.name = name
     this.observers = []
     this.state = '宝贝真乖~'
   }
   //提供一个接受观察的方法
-  attach(observer){
+  attach (observer) {
     this.observers.push(observer)//存放所有观察者
   }
-  setState(newState){//更改被观察者的状态
+  setState (newState) {//更改被观察者的状态
     this.state = newState
     this.observers.forEach(i => i.update(newState))
   }
 }
 
 //观察者
-class Observer{
- constructor(name){
-   this.name = name
- }
- update(newState){//通知观察者更新了
-   console.log(this.name+'说:'+newState);
- }
+class Observer {
+  constructor(name) {
+    this.name = name
+  }
+  update (newState) {//通知观察者更新了
+    console.log(this.name + '说:' + newState)
+  }
 }
 
 
