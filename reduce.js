@@ -69,11 +69,19 @@ let arr = [
   { id: 1, name: "李四" },
 ]
 
-function removeSame (arr) {
-  let obj = {}
-  let result = arr.reduce((pre, cur) => {
-    obj[cur.name] ? '' : (obj[cur.name] = cur.name && pre.push(cur))
-    return pre
-  }, [])
-  return result
+// filter + Map去重
+function removeSame (arr, uniVal) {
+  let map = new Map()
+  return arr.filter(v => !map.has(v[uniVal]) && map.set(v[uniVal], 1))
 }
+
+// reduce去重
+// function removeSame (arr) {
+//   let obj = {}
+//   let result = arr.reduce((pre, cur) => {
+//     obj[cur.name] ? '' : (obj[cur.name] = cur.name && pre.push(cur))
+//     return pre
+//   }, [])
+//   return result
+// }
+
