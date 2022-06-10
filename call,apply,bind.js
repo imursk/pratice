@@ -1,6 +1,6 @@
 // .call(this,params1,params2)      逗号分隔
 // .apply(this,[params1,params2])   数组包裹
-// .bind(this,params1,params2)()    自执行函数
+// .bind(this,params1,params2)()    自执行函数,可分多次传参（柯里化）
 // .bind(this,[params1,params2])()
 
 Function.prototype.myCall = function (context) {
@@ -44,22 +44,24 @@ Function.prototype.myApply = function (context) {
   return result
 }
 
-
 Function.prototype.myBind = function (context) {
-  // 判断调用对象是否为函数
+  // 边界
   if (typeof this !== "function") {
     throw new Error("Type error")
   }
-  // 获取参数
-  const args = [...arguments].slice(1)
-  const fn = this
-  return function Fn () {
-    return fn.apply(
-      this instanceof Fn ? this : context,
-      // 当前的这个 arguments 是指 Fn 的参数
-      args.concat(...arguments)
-    )
-  }
+  // 声明
+  const _T = this,
+    args = [...arguments].slice(1),
+    o = function () { },
+    newF = function () {
+      _T.apply(
+        this instanceof o ? this : context,
+        args.concat(...arguments)
+      )
+    }
+  o.prototype = _T.prototype
+  newF.prototype = new o
+  return newF
 }
 
 
